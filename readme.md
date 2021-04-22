@@ -17,6 +17,14 @@ npm install gl_tool
 
     /jsDoc/index.html
 
+### git地址
+
+- [git地址](https://github.com/linzl008/gl_tool)
+
+### npm地址
+
+- [npm地址](https://www.npmjs.com/package/gl_tool)
+
 ### 初始化
 
     注册npm账号（已有可忽略）

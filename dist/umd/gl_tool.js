@@ -46,7 +46,13 @@ return /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dateFmt": () => (/* binding */ dateFmt)
+/* harmony export */   "dateFmt": () => (/* binding */ dateFmt),
+/* harmony export */   "toStringURLParams": () => (/* binding */ toStringURLParams),
+/* harmony export */   "getUrlParam": () => (/* binding */ getUrlParam),
+/* harmony export */   "numFix": () => (/* binding */ numFix),
+/* harmony export */   "showPerNum": () => (/* binding */ showPerNum),
+/* harmony export */   "checkPhone": () => (/* binding */ checkPhone),
+/* harmony export */   "isEmpty": () => (/* binding */ isEmpty)
 /* harmony export */ });
 /*
  * @author: linzl
@@ -93,7 +99,85 @@ function dateFmt(time, fmt = 'YYYY-MM-DD HH:mm:ss') {
         .replace('ss', sec)
     return fmt;
 }
+/**
+ * 将obj {key: val} 转换成 ?key=val
+ * @param {*} params 
+ * @returns {string}
+ */
+function toStringURLParams(params) {
+    let str = "?"
+    for (let key in params) {
+        if (params[key] !== null && params[key] !== undefined) {
+            str += `${key}=${(params[key])}&`
+        }
+    }
+    str = str.substring(0, str.length - 1)
+    return str;
+}
 
+/**
+ * 获取url上对应key的val
+ * @param {*} key key
+ * @returns {string|null} str 返回字符串或者null
+ */
+function getUrlParam(key) {//封装方法
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] === variable) {
+            return pair[1];
+        }
+    }
+    return "";
+}
+/**
+ * 数字格式化
+ * @param {string|number} input 输入数据
+ * @param {*} fixed 保留位数
+ * @returns number
+ */
+function numFix(input, fixed = 4) {
+    if (input === null || input === undefined || isNaN(Number(input))) {
+        return '--'
+    }
+    if (input === 0 || input === '0') {
+        return input
+    }
+
+    return Math.round(Number(input) * Math.pow(10, fixed)) / Math.pow(10, fixed);
+}
+/**
+ * 显示百分比数据
+ * @param num 输入数据
+ * @returns {number}
+ */
+function showPerNum(num) {
+    if (num === null || num === undefined || isNaN(Number(input))) {
+        return '--';
+    } else {
+        return (num * 100).toFixed(2)
+    }
+}
+
+/**
+ * 校验手机号
+ * @param {*} value 输入字符串
+ * @returns {boolean} 返回是否是手机号
+ */
+function checkPhone(value) {
+    if (isEmpty(value)) return false;
+    if (!/^1\d{10}$/.test(value)) return false;
+    return true;
+}
+/**
+ * 检验时候是空值，null, undefined,""
+ * @param {*} val 输入变量
+ * @returns {Boolean} 是否空
+ */
+function isEmpty(val) {
+    return val === undefined || val === null || val === "";
+}
 // module.exports = {
 //     dateFmt
 // }

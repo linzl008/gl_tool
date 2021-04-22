@@ -5,6 +5,26 @@
  * @Date: 2021-04-21 18:16:27
  * @return: 
 -->
+## gl_tool
+
+* 常用的工具函数
+
+```
+npm install gl_tool
+```
+
+### 文档位置
+
+    /jsDoc/index.html
+
+### git地址
+
+- [git地址](https://github.com/linzl008/gl_tool)
+
+### npm地址
+
+- [npm地址](https://www.npmjs.com/package/gl_tool)
+
 ### 初始化
 
     注册npm账号（已有可忽略）
@@ -27,6 +47,8 @@
 ### 发布
     命令修改如下，可以发布到npmjs
 
+    npm version patch
+    
     npm login --registry http://registry.npmjs.org
 
     npm publish --registry http://registry.npmjs.org
